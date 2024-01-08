@@ -1,0 +1,14 @@
+{
+  "name": "lev-docs",
+  "version": "0.0.1",
+  "description": "Documentation for the Life Event Verification Service",
+  "scripts": {
+    "lint": "redocly lint openapi.yaml",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@redocly/cli": "^1.6.0"
+  }
+}
