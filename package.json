@@ -4,7 +4,7 @@
   "description": "Documentation for the Life Event Verification Service",
   "scripts": {
     "lint": "redocly lint openapi.yaml",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "exit 0"
   },
   "author": "",
   "license": "ISC",
