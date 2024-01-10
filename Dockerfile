@@ -1,13 +1,8 @@
-FROM node:20-alpine as builder
+FROM redocly/redoc:v2.1.3
 
-WORKDIR /app
+COPY openapi.yaml /usr/share/nginx/html/
 
-COPY package.json package-lock.json openapi.yaml ./
+ENV SPEC_URL="./openapi.yaml"
+ENV PAGE_TITLE="Life Event Verification"
+#ENV REDOC_OPTIONS="hide-hostname=true"
 
-RUN npm install
-
-RUN npx @redocly/cli build-docs openapi.yaml --output=docs.html
-
-FROM redocly/redoc
-
-COPY --from=builder /app/docs.html /usr/share/nginx/html/index.html

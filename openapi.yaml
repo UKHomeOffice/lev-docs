@@ -1,4 +1,11 @@
 openapi: 3.0.1
+servers:
+  - url: https://https://lev-adapter-dev1.np.ebsa.homeoffice.gov.uk/
+    description: dev1
+  - url: https://lev-adapter-nft1.np.ebsa.homeoffice.gov.uk/
+    description: nft1
+  - url: https://lev-adapter-prp1.np.ebsa.homeoffice.gov.uk/
+    description: prp1
 info:
   title: Life Event Verification (LEV) API
   description: "A ReSTful API for verifying 'life events' such as births, deaths and\
@@ -6,11 +13,6 @@ info:
   contact:
     email: levapi@digital.homeoffice.gov.uk
   version: 0.0.1
-externalDocs:
-  description: Find more info here
-  url: https://docs.api.lev.homeoffice.gov.uk
-servers:
-  - url: https://api.lev.homeoffice.gov.uk/
 security:
   - bearerToken: []
 tags:
