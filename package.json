@@ -4,11 +4,12 @@
   "description": "Documentation for the Life Event Verification Service",
   "scripts": {
     "lint": "redocly lint openapi.yaml",
-    "test": "exit 0"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@redocly/cli": "^1.6.0"
+    "@redocly/cli": "^1.6.0",
+    "jest": "^29.7.0"
   }
 }

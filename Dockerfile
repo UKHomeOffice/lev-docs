@@ -1,8 +1,7 @@
 FROM redocly/redoc:v2.1.3
 
-COPY openapi.yaml /usr/share/nginx/html/
+COPY openapi.yaml assets/logo.png /usr/share/nginx/html/
 
 ENV SPEC_URL="./openapi.yaml"
-ENV PAGE_TITLE="Life Event Verification"
-#ENV REDOC_OPTIONS="hide-hostname=true"
-
+ENV PAGE_TITLE="Life Event Verification Service Documentation"
+ENV PAGE_FAVICON="./logo.png"

@@ -1,6 +1,6 @@
 openapi: 3.0.1
 servers:
-  - url: https://https://lev-adapter-dev1.np.ebsa.homeoffice.gov.uk/
+  - url: https://lev-adapter-dev1.np.ebsa.homeoffice.gov.uk/
     description: dev1
   - url: https://lev-adapter-nft1.np.ebsa.homeoffice.gov.uk/
     description: nft1
