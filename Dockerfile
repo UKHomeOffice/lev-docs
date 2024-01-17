@@ -1,14 +1,7 @@
-FROM node:20-alpine as builder
+FROM redocly/redoc:v2.1.3
 
-WORKDIR /app
+COPY openapi.yaml assets/logo.png /usr/share/nginx/html/
 
-COPY package.json package-lock.json openapi.yaml ./
-
-RUN npm install
-
-RUN npx @redocly/cli build-docs openapi.yaml --output=docs.html
-
-FROM redocly/redoc
-
-COPY --from=builder /app/docs.html /usr/share/nginx/html/index.html
-COPY --from=builder /app/docs.page.yaml /usr/share/nginx/html/
+ENV SPEC_URL="./openapi.yaml"
+ENV PAGE_TITLE="Life Event Verification Service Documentation"
+ENV PAGE_FAVICON="./logo.png"
