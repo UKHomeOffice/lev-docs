@@ -1,18 +1,33 @@
 openapi: 3.0.1
 servers:
-  - url: https://lev-adapter-dev1.np.ebsa.homeoffice.gov.uk/
-    description: dev1
-  - url: https://lev-adapter-nft1.np.ebsa.homeoffice.gov.uk/
-    description: nft1
   - url: https://lev-adapter-prp1.np.ebsa.homeoffice.gov.uk/
-    description: prp1
+    description: Pre-production
+  - url: https://lev-adapter.ebsa.homeoffice.gov.uk/
+    description: Production
 info:
   title: Life Event Verification (LEV) API
-  description: "A ReSTful API for verifying 'life events' such as births, deaths and\
-    \ marriages."
+  description: |
+    "A ReSTful API for verifying 'life events' such as births, deaths and marriages."
+    
+    # Environments
+    The Life Event Verification service is deployed in multiple environments , many to facilitate development and testing. 
+    
+    For customer usage,only the pre-production (prp1) and production (prod) environments are used.
+    
+    # Keycloak/Bearer Tokens
+    LEV uses Keycloak to issue Bearer Tokens. There are different instances that can be used, depending on environment.
+    
+    Non-production:
+    
+    https://keycloak-ho-hmpo-hybdidm-idm.ebsa.homeoffice.gov.uk
+    
+    Production:
+    
+    https://keycloak-ho-hmpo-prp1-e-hybdidm-idm.np.ebsa.homeoffice.gov.uk
+
   contact:
     email: levapi@digital.homeoffice.gov.uk
-  version: 0.0.1
+  version: 0.22.0
 security:
   - bearerToken: []
 tags:
@@ -720,51 +735,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/v1-Partnership'
-  /api/v0/audit/user-activity:
-    get:
-      tags:
-        - user-activity
-      summary: Query user activity
-      operationId: searchActivity
-      parameters:
-        - name: from
-          in: query
-          description: The beginning of the timespan to search
-          schema:
-            type: string
-            format: date
-          example: 2017-01-01
-        - name: to
-          in: query
-          description: The end of the timespan to search
-          schema:
-            type: string
-            format: date
-          example: 2017-12-31
-      responses:
-        default:
-          description: Bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/generalError'
-              example: |
-                {"code":"BadRequest","message":"Must provide the dateOfBirth parameter"}
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: object
-              example: |
-                {
-                  "test": {
-                    "2017-01-01": 2
-                  }
-                }
-      security:
-        - bearerToken:
-            - audit
 components:
   schemas:
     generalError:
@@ -1780,10 +1750,15 @@ components:
       description: OAuth2 bearer token obtainable via OpenID-Connect
       flows:
         authorizationCode:
-          authorizationUrl: https://keycloak-ho-hmpo-prp1-e-hybdidm-idm.np.ebsa.homeoffice.gov.uk/realms/lev-dev1/protocol/openid-connect/auth
-          tokenUrl: https://keycloak-ho-hmpo-prp1-e-hybdidm-idm.np.ebsa.homeoffice.gov.uk/realms/lev-dev1/protocol/openid-connect/token
-          scopes:
-            audit: read audit data
+          authorizationUrl: https://{KEYCLOAK}/realms/{ENVIRONMENT}/protocol/openid-connect/auth
+          tokenUrl: https://{KEYCLOAK}/realms/{ENVIRONMENT}/protocol/openid-connect/token
+    bearerToken2:
+      type: oauth2
+      description: OAuth2 bearer token obtainable via OpenID-Connect
+      flows:
+        authorizationCode:
+          authorizationUrl: /realms/{REALM}/protocol/openid-connect/auth
+          tokenUrl: /realms/{REALM}}/protocol/openid-connect/token
     mockHeaderUsername:
       type: apiKey
       description: "Dummy header representing the username, required only by the mock"
