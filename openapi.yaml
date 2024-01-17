@@ -10,24 +10,24 @@ info:
     "A ReSTful API for verifying 'life events' such as births, deaths and marriages."
     
     # Environments
-    The Life Event Verification service is deployed in multiple environments , many to facilitate development and testing. 
+    The Life Event Verification service is deployed in multiple environments, many to facilitate development and testing. 
     
-    For customer usage,only the pre-production (prp1) and production (prod) environments are used.
+    For customer usage, only the pre-production (prp1) and production (prod) environments are used.
     
     # Keycloak/Bearer Tokens
     LEV uses Keycloak to issue Bearer Tokens. There are different instances that can be used, depending on environment.
     
     Non-production:
     
-    https://keycloak-ho-hmpo-hybdidm-idm.ebsa.homeoffice.gov.uk
+    https://keycloak-ho-hmpo-prp1-e-hybdidm-idm.np.ebsa.homeoffice.gov.uk
     
     Production:
     
-    https://keycloak-ho-hmpo-prp1-e-hybdidm-idm.np.ebsa.homeoffice.gov.uk
+    https://keycloak-ho-hmpo-hybdidm-idm.ebsa.homeoffice.gov.uk
 
   contact:
     email: levapi@digital.homeoffice.gov.uk
-  version: 0.22.0
+  version: 0.0.2
 security:
   - bearerToken: []
 tags:
