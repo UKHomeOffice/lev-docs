@@ -1752,13 +1752,6 @@ components:
         authorizationCode:
           authorizationUrl: https://{KEYCLOAK}/realms/{ENVIRONMENT}/protocol/openid-connect/auth
           tokenUrl: https://{KEYCLOAK}/realms/{ENVIRONMENT}/protocol/openid-connect/token
-    bearerToken2:
-      type: oauth2
-      description: OAuth2 bearer token obtainable via OpenID-Connect
-      flows:
-        authorizationCode:
-          authorizationUrl: /realms/{REALM}/protocol/openid-connect/auth
-          tokenUrl: /realms/{REALM}}/protocol/openid-connect/token
     mockHeaderUsername:
       type: apiKey
       description: "Dummy header representing the username, required only by the mock"
