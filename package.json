@@ -1,6 +1,6 @@
 {
   "name": "lev-docs",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Documentation for the Life Event Verification Service",
   "scripts": {
     "lint": "redocly lint openapi.yaml",

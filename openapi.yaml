@@ -15,21 +15,12 @@ info:
     For customer usage, only the pre-production (prp1) and production (prod) environments are used.
     
     # Keycloak/Bearer Tokens
-    LEV uses Keycloak to issue Bearer Tokens. There are different instances that can be used, depending on environment.
-    
-    Non-production:
-    
-    https://keycloak-ho-hmpo-prp1-e-hybdidm-idm.np.ebsa.homeoffice.gov.uk
-    
-    Production:
-    
-    https://keycloak-ho-hmpo-hybdidm-idm.ebsa.homeoffice.gov.uk
+    LEV uses Keycloak to issue Bearer Tokens and lev-adapter provides the endpoint /auth/token (a Keycloak wrapper) 
+    to obtain one that is documented below.
 
   contact:
     email: levapi@digital.homeoffice.gov.uk
-  version: 0.0.2
-security:
-  - bearerToken: []
+  version: 0.0.3
 tags:
   - name: birth
     description: Birth records
@@ -39,7 +30,38 @@ tags:
     description: Marriage records
   - name: partnership
     description: Civil partnership records
+  - name: token
+    description: Bearer Token to Access API
+security:
+  - bearerToken: []
 paths:
+  /auth/token:
+    post:
+      summary: Returns a bearer token required for API usage
+      tags:
+        - token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+      security: []
   /api/v0/events/birth:
     get:
       tags:
@@ -1746,12 +1768,9 @@ components:
             {"code":"ResourceNotFound","message":"/404 does not exist"}
   securitySchemes:
     bearerToken:
-      type: oauth2
-      description: OAuth2 bearer token obtainable via OpenID-Connect
-      flows:
-        authorizationCode:
-          authorizationUrl: https://{KEYCLOAK}/realms/{ENVIRONMENT}/protocol/openid-connect/auth
-          tokenUrl: https://{KEYCLOAK}/realms/{ENVIRONMENT}/protocol/openid-connect/token
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
     mockHeaderUsername:
       type: apiKey
       description: "Dummy header representing the username, required only by the mock"
