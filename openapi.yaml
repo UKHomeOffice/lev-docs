@@ -20,7 +20,7 @@ info:
 
   contact:
     email: levapi@digital.homeoffice.gov.uk
-  version: 0.0.3
+  version: 0.0.4
 tags:
   - name: birth
     description: Birth records
