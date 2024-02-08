@@ -20,7 +20,7 @@ info:
 
   contact:
     email: levapi@digital.homeoffice.gov.uk
-  version: 0.0.3
+  version: 0.0.4
 tags:
   - name: birth
     description: Birth records
@@ -50,6 +50,12 @@ paths:
                 username:
                   type: string
                 password:
+                  type: string
+                grant_type:
+                  type: string
+                client_id:
+                  type: string
+                client_secret:
                   type: string
       responses:
         '200':
