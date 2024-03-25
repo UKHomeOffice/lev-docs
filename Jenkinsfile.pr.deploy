@@ -10,6 +10,6 @@ pipelineDeployment {
     application = 'lev-docs'
     service = 'fro'
     zone = 'e'
-    cluster = 'np-e-docker-env1'
+    cluster = 'pr-e-docker-env1'
     dockerImagePath = 'ho/hmpo/lev/fro/lev-docs'
 }
