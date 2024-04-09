@@ -16,6 +16,8 @@ Can be accessed at:
 
 ## Running in a Docker container
 
+To start the docs in a docker container:
+
 `docker build -t lev-docs .`
 
 `docker run -p 8080:80 lev-docs` 
